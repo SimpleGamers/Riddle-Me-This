@@ -4,6 +4,10 @@ var context = canvas.getContext("2d");
 var startFrameMillis = Date.now();
 var endFrameMillis = Date.now();
 
+var SCREEN_WIDTH = canvas.width;
+var SCREEN_HEIGHT = canvas.height;
+
+
 // This function will return the time in seconds since the function 
 // was last called
 // You should only call this function once per frame
@@ -26,25 +30,16 @@ function getDeltaTime() {
     return deltaTime;
 }
 
-var fps = 0;
-var fpsCount = 0;
-var fpsTime = 0;
-
 var LAYER_COUNT = 3;
-var LAYER_BACKGROUND = 0;
-var LAYER_WALLS = 1;
-var LAYER_OBJECTIVES = 2;
-var MAP = { tw: 30, th: 30 };
-var TILE = 8;
+var TILE = 35;
 var TILESET_TILE = TILE * 2;
-var TILESET_PADDING = 0;
-var TILESET_SPACING = TILESET_PADDING;
-var TILESET_COUNT_X = 19;
-var TILESET_COUNT_Y = 13;
+var TILESET_PADDING = 2;
+var TILESET_SPACING = 2;
+var TILESET_COUNT_X = 14;
+var TILESET_COUNT_Y = 14;
 
-// load our image for our awesome riddler game
 var tileset = document.createElement("img");
-tileset.src = "riddlergametileset.png";
+tileset.src = "RESIZEDtileset.png"
 
 function drawMap() {
     for (var layerIdx = 0; layerIdx < LAYER_COUNT; layerIdx++) {
@@ -72,20 +67,7 @@ function run() {
 
     var deltaTime = getDeltaTime();
     drawMap();
-
-    // update the frame counter
-    fpsTime += deltaTime;
-    fpsCount++;
-    if (fpsTime >= 1) {
-        fpsTime -= 1;
-        fps = fpsCount;
-        fpsCount = 0;
-    }
-
-    // draw the FPS
-    context.fillStyle = "#f00";
-    context.font = "14px Arial";
-    context.fillText("FPS: " + fps, 5, 20, 100);
+  
 }
 
 (function() {
