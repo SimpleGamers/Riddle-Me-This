@@ -1,0 +1,37 @@
+HUGE BREAKTHROUGH!!!! I've made the 16px tileset to work!!!! I actually did it!!! 
+
+THIS IS THE CODE: 
+
+var LAYER_COUNT = 3;
+var TILE = 8;
+var TILESET_TILE = TILE * 2;
+var TILESET_PADDING = 0;
+var TILESET_SPACING = 1;
+var TILESET_COUNT_X = 17;
+var TILESET_COUNT_Y = 14;
+
+
+
+
+var tileset = document.createElement("img");
+tileset.src = "16pxVersion - Olek.png";
+
+function drawMap() {
+    for (var layerIdx = 0; layerIdx < LAYER_COUNT; layerIdx++) {
+        var idx = 0;
+        for (var y = 0; y < level1.layers[layerIdx].height; y++) {
+            for (var x = 0; x < level1.layers[layerIdx].width; x++) {
+                if (level1.layers[layerIdx].data[idx] != 0) {
+                    var tileIndex = level1.layers[layerIdx].data[idx] - 1;
+                    var sx = TILESET_PADDING + (tileIndex % TILESET_COUNT_X) * (TILESET_TILE + TILESET_SPACING);
+                    var sy = TILESET_PADDING + (Math.floor(tileIndex / TILESET_COUNT_X)) * (TILESET_TILE + TILESET_SPACING);
+                    context.drawImage(tileset, sx, sy, TILESET_TILE, TILESET_TILE, x * TILE, (y - 1) * TILE, TILESET_TILE, TILESET_TILE);
+                }
+                idx++;
+            }
+        }
+    }
+}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~WHEN CREATING THE TILED MAP, SET THE TILE WIDTH AND HEIGHT TO 8px, 
+WHEN ADDING THE TILESET CREATE IT AT 16px WITH A MARGIN OF 0 AND A SPACING OF 1! PRESTO SHE WORKS BOYS!!!

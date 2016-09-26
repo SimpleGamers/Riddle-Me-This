@@ -25,18 +25,18 @@ var fpsCount = 0;
 var fpsTime = 0;
 
 var LAYER_COUNT = 3;
-var TILE = 35;
+var TILE = 8;
 var TILESET_TILE = TILE * 2;
-var TILESET_PADDING = 2;
-var TILESET_SPACING = 2;
-var TILESET_COUNT_X = 18;
-var TILESET_COUNT_Y = 13;
+var TILESET_PADDING = 0;
+var TILESET_SPACING = 1;
+var TILESET_COUNT_X = 17;
+var TILESET_COUNT_Y = 14;
 
 
 
 
 var tileset = document.createElement("img");
-tileset.src = "thisbetterwork.png";
+tileset.src = "16pxVersion - Olek.png";
 
 function drawMap() {
     for (var layerIdx = 0; layerIdx < LAYER_COUNT; layerIdx++) {
