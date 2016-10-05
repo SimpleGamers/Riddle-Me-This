@@ -18,6 +18,8 @@ function getDeltaTime() {
 
 //ABOVE DON'T TOUCH
 
+var SCREEN_WIDTH = canvas.width;
+var SCREEN_HEIGHT = canvas.height;
 
 
 var fps = 0;
