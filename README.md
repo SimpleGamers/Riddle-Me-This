@@ -9,4 +9,9 @@ Hope its all running smoothely on your end
 Hey guys, I don't know if you are actually reading this but, I've managed to scale the map to the appropriate size to fit it in, and it loads correctly??? WOOOHOOO,
 Just need to do some minor tweaking which I should be able to get done today! ~Nicholas
 <br> 
+Olek-
 Yeah I read it good that its all working
+<br>
+<br>
+<br>
+ALL HAIL LORD REVAN
