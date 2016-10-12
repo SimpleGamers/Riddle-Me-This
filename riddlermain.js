@@ -35,7 +35,8 @@ var TILESET_COUNT_X = 17;
 var TILESET_COUNT_Y = 14;
 
 
-
+var player = new Player();
+var keyboard = new Keyboard();
 
 var tileset = document.createElement("img");
 tileset.src = "16pxVersion - Olek.png";
@@ -63,7 +64,11 @@ function run() {
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     var deltaTime = getDeltaTime();
+
+    player.update(deltaTime);
     drawMap();
+    player.draw();
+
 
     fpsTime += deltaTime;
     fpsCount++;
