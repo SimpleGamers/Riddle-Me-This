@@ -67,7 +67,7 @@ function cellAtPixelCoord(layer, x, y) {
     return cellAtTileCoord(layer, p2t(x), p2t(y));
 };
 function cellAtTileCoord(layer, tx, ty) {
-    if (tx < 0 || tx >= MAP.tw || ty < 0)
+    if (tx < 0 || tx || ty < 0)
         return 1;
     // let the player drop of the bottom of the screen (this means death)
     if (ty >= MAP.th)
@@ -117,9 +117,6 @@ function initialize() {
                     // (because our collision squares are 35x35 but the tile in the
                     // level are 70x70)
                     cells[layerIdx][y][x] = 1;
-                    cells[layerIdx][y - 1][x] = 1;
-                    cells[layerIdx][y - 1][x + 1] = 1;
-                    cells[layerIdx][y][x + 1] = 1;
                 }
                 else if (cells[layerIdx][y][x] != 1) {
                     // if we haven't set this cell's value, then set it to 0 now
@@ -138,8 +135,8 @@ function run() {
     var deltaTime = getDeltaTime();
 
     player.update(deltaTime);
+	player.draw();
     drawMap();
-    player.draw();
 
 
     fpsTime += deltaTime;
