@@ -84,7 +84,7 @@ function run() {
     
 
 
-    context.fillText("Time Left: " + Timer, 375, 20, 100);
+    context.fillText("Time Left: " + Timer.toFixed(2), 375, 20, 100);
     
 }
 
