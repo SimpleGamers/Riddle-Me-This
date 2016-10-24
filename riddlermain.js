@@ -25,7 +25,16 @@ var fps = 0;
 var fpsCount = 0;
 var fpsTime = 0;
 var Timer = 30;
-var LAYER_COUNT = 3;
+var LAYER_COUNT = 4;
+var LAYER_BACKGOUND = 0;
+//walls
+var LAYER_PLATFORMS = 1;
+
+
+
+var LAYER_OBJECT_TRIGGERS = 3
+
+var MAP = { tw: 60, th: 15 };
 var TILE = 8;
 var TILESET_TILE = TILE * 2;
 var TILESET_PADDING = 0;
@@ -33,11 +42,60 @@ var TILESET_SPACING = 1;
 var TILESET_COUNT_X = 17;
 var TILESET_COUNT_Y = 14;
 
+var METER = TILE;
+var GRAVITY = 0;
+var MAXDX = METER * 10;
+ // max vertical speed (15 tiles per second)
+var MAXDY = METER * 15;
+ // horizontal acceleration - take 1/2 second to reach maxdx
+var ACCEL = MAXDX * 2;
+ // horizontal friction - take 1/6 second to stop from maxdx
+var FRICTION = MAXDX * 6;
+
+
+
+var player = new Player();
+var keyboard = new Keyboard();
+
+
 
 
 
 var tileset = document.createElement("img");
 tileset.src = "16pxVersion - Olek.png";
+
+function cellAtPixelCoord(layer, x,y)
+{
+	if(x<0 || x>SCREEN_WIDTH) // || y<0)
+		return 1;
+	// let the player drop of the bottom of the screen (this means death)
+	if(y>SCREEN_HEIGHT)
+		return 0;
+	return cellAtTileCoord(layer, p2t(x), p2t(y));
+};
+
+function cellAtTileCoord(layer, tx, ty)
+{
+	if(tx<0 || tx>=MAP.tw) // || ty<0)
+		return 1;
+	// let the player drop of the bottom of the screen (this means death)
+	if(ty>=MAP.th)
+		return 0;
+};
+
+function pixelToTile(pixel)
+{
+	return Math.floor(pixel/TILE);
+};
+
+function bound(value, min, max)
+{
+	if(value < min)
+		return min;
+	if(value > max)
+		return max;
+	return value;
+}
 
 function drawMap() {
     for (var layerIdx = 0; layerIdx < LAYER_COUNT; layerIdx++) {
@@ -62,7 +120,12 @@ function run() {
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     var deltaTime = getDeltaTime();
+	
+	player.update(deltaTime);
+	
+	
     drawMap();
+	player.draw();
 
     fpsTime += deltaTime;
     fpsCount++;
