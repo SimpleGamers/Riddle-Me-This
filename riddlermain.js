@@ -138,17 +138,24 @@ function run() {
     context.fillStyle = "#f00";
     context.font = "14px Arial";
     context.fillText("FPS: " + fps, 5, 20, 100);
-     //update the  timer
-
+	
+	
+   if(Timer >= 0){
     Timer -= deltaTime;
     //Timer Drawing
     context.fillStyle = "#f00";
     context.font = "14px Arial";
-    
-
-
     context.fillText("Time Left: " + Timer.toFixed(2), 375, 20, 100);
+}
+    //Game end
     
+    if(Timer <= 0){
+     
+    context.fillStyle = "#ffff00";
+    context.font = "20px Arial";
+    context.fillText("You Loose", 40, 100);
+    
+    }  
 }
 
 
