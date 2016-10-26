@@ -34,24 +34,24 @@ Player.prototype.update = function (deltaTime) {
 
     var left = false;
     var right = false;
-
+ if(Timer >= 0){
     if (keyboard.isKeyDown(keyboard.KEY_LEFT) == true) {
-        this.position.x += -20;
+        this.position.x += -5;
        
     }
     if (keyboard.isKeyDown(keyboard.KEY_RIGHT) == true) {
      
-        this.position.x += 20;
+        this.position.x += 5;
     }
 
     if (keyboard.isKeyDown(keyboard.KEY_UP) == true) {
-        this.position.y -= 20;
+        this.position.y -= 5;
     }
 
        if (keyboard.isKeyDown(keyboard.KEY_DOWN) == true) {
-        this.position.y += 20;
+        this.position.y += 5;
     }
-
+ }
     var wasleft = this.velocity.x < 0;
     var wasright = this.velocity.x > 0;
     var ddx = 0;
