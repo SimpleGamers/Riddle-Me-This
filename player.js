@@ -36,10 +36,12 @@ Player.prototype.update = function (deltaTime) {
     var right = false;
 
     if (keyboard.isKeyDown(keyboard.KEY_LEFT) == true) {
-        left = true;
+        player.x += 20;
+        //left = true;
     }
     if (keyboard.isKeyDown(keyboard.KEY_RIGHT) == true) {
-        right = true;
+        //right = true;
+        player.x += -20;
     }
 
     var wasleft = this.velocity.x < 0;
@@ -67,7 +69,7 @@ Player.prototype.update = function (deltaTime) {
      }
 
 
-    // we’ll insert code here later
+    // weï¿½ll insert code here later
     // collision detection
     // Our collision detection logic is greatly simplified by the fact that the
     // player is a rectangle and is exactly the same size as a single tile.
