@@ -77,7 +77,7 @@ Player.prototype.update = function (deltaTime) {
      }
 
 
-    // we�ll insert code here later
+    // we'll insert code here later
     // collision detection
     // Our collision detection logic is greatly simplified by the fact that the
     // player is a rectangle and is exactly the same size as a single tile.
