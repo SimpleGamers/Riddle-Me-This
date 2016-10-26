@@ -36,12 +36,20 @@ Player.prototype.update = function (deltaTime) {
     var right = false;
 
     if (keyboard.isKeyDown(keyboard.KEY_LEFT) == true) {
-        player.x += 20;
-        //left = true;
+        this.position.x += -20;
+       
     }
     if (keyboard.isKeyDown(keyboard.KEY_RIGHT) == true) {
-        //right = true;
-        player.x += -20;
+     
+        this.position.x += 20;
+    }
+
+    if (keyboard.isKeyDown(keyboard.KEY_UP) == true) {
+        this.position.y -= 20;
+    }
+
+       if (keyboard.isKeyDown(keyboard.KEY_DOWN) == true) {
+        this.position.y += 20;
     }
 
     var wasleft = this.velocity.x < 0;
@@ -129,7 +137,7 @@ Player.prototype.update = function (deltaTime) {
 
 Player.prototype.draw = function () {
     context.save();
-    context.translate(this.x, this.y);
+    context.translate(this.position.x, this.position.y);
     context.rotate(this.rotation);
     context.drawImage(this.image, -this.width / 2, -this.height / 2);
     context.restore();
