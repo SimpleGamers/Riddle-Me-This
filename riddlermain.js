@@ -57,7 +57,9 @@ var FRICTION = MAXDX * 6;
 var player = new Player();
 var keyboard = new Keyboard();
 
-
+if (player.x == 42 && player.y == 90) {
+    prompt("What is blue and grey and hairy all over");
+};
 
 
 
@@ -114,6 +116,32 @@ function drawMap() {
     }
 }
 
+var cells = []; // the array that holds our simplified collision data
+function initialize() {
+    for (var layerIdx = 0; layerIdx < LAYER_COUNT; layerIdx++) { // initialize the collision map
+        cells[layerIdx] = [];
+        var idx = 0;
+        for (var y = 0; y < level1.layers[layerIdx].height; y++) {
+            cells[layerIdx][y] = [];
+            for (var x = 0; x < level1.layers[layerIdx].width; x++) {
+                if (level1.layers[layerIdx].data[idx] != 0) {
+                    // for each tile we find in the layer data, we need to create 4 collisions
+                    // (because our collision squares are 35x35 but the tile in the
+                    // level are 70x70)
+                    cells[layerIdx][y][x] = 1;
+                    cells[layerIdx][y - 1][x] = 1;
+                    cells[layerIdx][y - 1][x + 1] = 1;
+                    cells[layerIdx][y][x + 1] = 1;
+                }
+                else if (cells[layerIdx][y][x] != 1) {
+                    // if we haven't set this cell's value, then set it to 0 now
+                    cells[layerIdx][y][x] = 0;
+                }
+                idx++;
+            }
+        }
+    }
+}
 function run() {
 
     context.fillStyle = "#ccc";
@@ -124,9 +152,13 @@ function run() {
 	player.update(deltaTime);
 	
 	
+	context.save();
+	context.scale(2, 4);
+
     drawMap();
 	player.draw();
-
+	console.log(player.position.x + ", " + player.position.y);
+	context.restore();
     fpsTime += deltaTime;
     fpsCount++;
     if (fpsTime >= 1) {
@@ -157,7 +189,7 @@ function run() {
     
     }  
 }
-
+initialize();
 
 //BELOW DON'T TOUCH
 

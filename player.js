@@ -16,24 +16,22 @@ var Player = function () {
     this.image = document.createElement("img");
     this.position = new Vector2();
     this.position.set(9 * TILE, 0 * TILE);
-    this.width = 10;
-    this.height = 16;
-
+    this.width = 159;
+    this.height = 163;
     this.offset = new Vector2();
     this.offset.set(-55, -87);
-
     this.velocity = new Vector2();
-
     this.falling = true;
-
+    this.jumping = false;
     this.image.src = "player.png";
-};
+};
 
 
 Player.prototype.update = function (deltaTime) {
 
     var left = false;
     var right = false;
+    var jump = false;
  if(Timer >= 0){
     if (keyboard.isKeyDown(keyboard.KEY_LEFT) == true) {
         this.position.x += -5;
