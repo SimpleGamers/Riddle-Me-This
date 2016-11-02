@@ -78,11 +78,13 @@ function cellAtPixelCoord(layer, x,y)
 
 function cellAtTileCoord(layer, tx, ty)
 {
-	if(tx<0 || tx>=MAP.tw) // || ty<0)
-		return 1;
-	// let the player drop of the bottom of the screen (this means death)
-	if(ty>=MAP.th)
-		return 0;
+    if (tx < 0 || tx >= MAP.tw)
+        return 1;
+    // let the player drop of the bottom of the screen
+    // (this means death)
+    if (ty >= MAP.th)
+        return 0;
+    return cells[layer][ty][tx];
 };
 
 function pixelToTile(pixel)
